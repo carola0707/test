@@ -1,0 +1,400 @@
+/**
+ * Curated product data for a stable demo catalog.
+ * Batch 1 skincare now uses real uploaded product images and live product links.
+ */
+import { Product } from "@/types/product";
+
+export const products: Product[] = [
+  // ==================== SKINCARE ====================
+  {
+    id: "sk-001",
+    name: "2% BHA Liquid Exfoliant",
+    brand: "Paula's Choice",
+    price: 34.0,
+    rating: 4.7,
+    image: "/products/items/sk-001-paulas-choice-bha.jpg",
+    description: "Gentle leave-on exfoliant unclogs pores and smooths texture.",
+    fullDescription:
+      "A lightweight liquid exfoliant designed to clear pores, reduce blackheads, and improve texture for a smoother-looking complexion.",
+    category: "skincare",
+    gender: "unisex",
+    skinConcerns: ["acne", "pores", "dullness"],
+    ingredients: ["Salicylic Acid", "Green Tea Extract"],
+    benefits: ["Unclogs pores", "Smooths texture", "Reduces blackheads"],
+    externalUrl: "https://www.paulaschoice.com/skin-perfecting-2pct-bha-liquid-exfoliant/201-2010.html",
+  },
+  {
+    id: "sk-002",
+    name: "Hyaluronic Acid 2% + B5",
+    brand: "The Ordinary",
+    price: 8.9,
+    rating: 4.5,
+    image: "/products/items/sk-002-the-ordinary-ha.jpg",
+    description: "Lightweight serum for intense hydration with hyaluronic acid.",
+    fullDescription:
+      "A hydration serum with hyaluronic acid, provitamin B5, and ceramides designed to support plump, smooth, and hydrated skin.",
+    category: "skincare",
+    gender: "unisex",
+    skinConcerns: ["dryness", "hydration"],
+    ingredients: ["Hyaluronic Acid", "Vitamin B5", "Ceramides"],
+    benefits: ["Hydrates", "Plumps skin", "Supports softness"],
+    externalUrl: "https://theordinary.com/en-us/hyaluronic-acid-2-b5-serum-with-ceramides-100637.html",
+  },
+  {
+    id: "sk-003",
+    name: "C-Firma Fresh Day Serum",
+    brand: "Drunk Elephant",
+    price: 78.0,
+    rating: 4.6,
+    image: "/products/items/sk-003-drunk-elephant-c-firma.jpg",
+    description: "Potent vitamin C serum for brighter, firmer skin.",
+    fullDescription:
+      "A vitamin C day serum with L-ascorbic acid and ferulic acid designed to help brighten skin and improve the look of firmness.",
+    category: "skincare",
+    gender: "unisex",
+    skinConcerns: ["dark-spots", "dullness", "aging"],
+    ingredients: ["15% L-Ascorbic Acid", "Ferulic Acid", "Vitamin E"],
+    benefits: ["Brightens complexion", "Antioxidant support", "Improves tone"],
+    externalUrl: "https://www.sephora.com/product/c-firma-day-serum-P400259",
+  },
+  {
+    id: "sk-004",
+    name: "Ceramidin Skin Barrier Moisturizing Cream",
+    brand: "Dr. Jart+",
+    price: 52.0,
+    rating: 4.7,
+    image: "/products/items/sk-004-dr-jart-ceramidin-cream.jpg",
+    description: "Rich cream that supports the skin barrier.",
+    fullDescription:
+      "A nourishing cream formulated with ceramides and panthenol to help reduce dryness and support a stronger skin barrier.",
+    category: "skincare",
+    gender: "unisex",
+    skinConcerns: ["dryness", "sensitivity", "redness"],
+    ingredients: ["Ceramides", "Panthenol", "Glycerin"],
+    benefits: ["Deep moisture", "Barrier support", "Soothes irritation"],
+    externalUrl: "https://www.drjart.com/product/28258/111504/moisturizers/ceramidintm-skin-barrier-moisturizing-cream",
+  },
+
+  // ==================== MAKEUP ====================
+  {
+  id: "mk-001",
+  name: "Luminous Silk Foundation",
+  brand: "Giorgio Armani",
+  price: 65.0,
+  rating: 4.8,
+  image: "/products/items/mk-001-armani-luminous-silk.png",
+  description: "Radiant foundation with a natural-looking finish.",
+  fullDescription:
+    "A lightweight complexion product created to give skin a smooth, luminous, and polished appearance.",
+  category: "makeup",
+  gender: "female",
+  skinConcerns: ["dullness"],
+  ingredients: ["Glycerin", "Dimethicone"],
+  benefits: ["Natural glow", "Buildable coverage", "Lightweight feel"],
+  externalUrl:
+    "https://www.giorgioarmanibeauty-usa.com/makeup/face/foundation/luminous-silk-natural-glow-blurring-foundation/ww-01019-arm.html",
+},
+{
+  id: "mk-002",
+  name: "Lip Glow Oil",
+  brand: "Dior",
+  price: 40.0,
+  rating: 4.7,
+  image: "/products/items/mk-002-dior-lip-glow-oil.png",
+  description: "Glossy nourishing lip oil.",
+  fullDescription:
+    "A comfortable lip oil designed to add shine while helping lips feel softer and smoother.",
+  category: "makeup",
+  gender: "female",
+  skinConcerns: ["dryness"],
+  ingredients: ["Cherry Oil", "Jojoba Oil"],
+  benefits: ["Glossy finish", "Softens lips", "Comfortable wear"],
+  externalUrl:
+    "https://www.dior.com/en_us/beauty/products/dior-addict-lip-glow-oil-Y0000163.html",
+},
+{
+  id: "mk-003",
+  name: "Better Than Sex Mascara",
+  brand: "Too Faced",
+  price: 29.0,
+  rating: 4.4,
+  image: "/products/items/mk-003-too-faced-better-than-sex.png",
+  description: "Volumizing mascara for fuller-looking lashes.",
+  fullDescription:
+    "A popular mascara formulated to add dramatic volume and definition for a bold eye look.",
+  category: "makeup",
+  gender: "female",
+  skinConcerns: [],
+  ingredients: ["Acacia Senegal Gum", "Peptide Complex"],
+  benefits: ["Adds volume", "Defines lashes", "Bold finish"],
+  externalUrl:
+    "https://www.toofaced.com/product/23484/59115/eye-makeup/mascara/better-than-sex-volumizing-mascara/",
+},
+{
+  id: "mk-004",
+  name: "Translucent Loose Setting Powder",
+  brand: "Laura Mercier",
+  price: 42.0,
+  rating: 4.7,
+  image: "/products/items/mk-004-laura-mercier-translucent-powder.png",
+  description: "Setting powder for a smooth soft-matte look.",
+  fullDescription:
+    "A lightweight finishing powder created to help makeup last longer while reducing excess shine.",
+  category: "makeup",
+  gender: "female",
+  skinConcerns: ["oiliness"],
+  ingredients: ["Silica", "Talc"],
+  benefits: ["Sets makeup", "Soft-matte finish", "Helps control shine"],
+  externalUrl:
+    "https://www.lauramercier.com/products/translucent-loose-setting-powder?country=US",
+},
+  // ==================== HAIRCARE ====================
+  {
+  id: "hc-001",
+  name: "No.3 Hair Perfector",
+  brand: "Olaplex",
+  price: 30.0,
+  rating: 4.6,
+  image: "/products/items/hc-001-olaplex-no3.png",
+  description: "Bond-building treatment for damaged hair.",
+  fullDescription:
+    "A weekly treatment intended to help strengthen hair and reduce the appearance of breakage.",
+  category: "haircare",
+  gender: "unisex",
+  skinConcerns: [],
+  ingredients: ["Bond-Building Complex"],
+  benefits: ["Strengthens hair", "Helps reduce breakage", "Improves feel"],
+  externalUrl:
+    "https://www.amazon.com/gp/aw/d/B0GHSXYY3Z/",
+},
+{
+  id: "hc-002",
+  name: "Dream Coat Supernatural Spray",
+  brand: "Color Wow",
+  price: 28.0,
+  rating: 4.5,
+  image: "/products/items/hc-002-color-wow-dream-coat.png",
+  description: "Smoothing treatment for frizz-prone hair.",
+  fullDescription:
+    "A lightweight anti-frizz product made to help hair stay sleek and glossy in humid conditions.",
+  category: "haircare",
+  gender: "unisex",
+  skinConcerns: [],
+  ingredients: ["Silicone Polymers", "Panthenol"],
+  benefits: ["Helps control frizz", "Adds shine", "Humidity support"],
+  externalUrl:
+    "https://www.revolve.com/color-wow-dream-coat-supernatural-spray/dp/CWOW-WU26/",
+},
+{
+  id: "hc-003",
+  name: "Moroccanoil Treatment",
+  brand: "Moroccanoil",
+  price: 48.0,
+  rating: 4.7,
+  image: "/products/items/hc-003-moroccanoil-treatment.png",
+  description: "Argan oil treatment for softness and shine.",
+  fullDescription:
+    "A smoothing hair oil intended to help detangle, soften, and boost shine.",
+  category: "haircare",
+  gender: "unisex",
+  skinConcerns: [],
+  ingredients: ["Argan Oil", "Vitamin E"],
+  benefits: ["Adds shine", "Softens hair", "Helps detangle"],
+  externalUrl:
+    "https://www.moroccanoil.com/products/moroccanoil-treatment",
+},
+{
+  id: "hc-004",
+  name: "Blondage Shampoo",
+  brand: "Redken",
+  price: 24.0,
+  rating: 4.4,
+  image: "/products/items/hc-004-redken-purple-shampoo.png",
+  description: "Tone-correcting shampoo for blonde and silver hair.",
+  fullDescription:
+    "A color-correcting shampoo aimed at reducing brassiness while cleansing gently.",
+  category: "haircare",
+  gender: "unisex",
+  skinConcerns: [],
+  ingredients: ["Violet Pigments", "Citric Acid"],
+  benefits: ["Helps tone brassiness", "Brightens blondes", "Cleanses"],
+  externalUrl:
+    "https://www.redken.com/hair-care/color-extend-blondage-shampoo.html",
+},
+  // ==================== FRAGRANCE ====================
+  {
+  id: "fr-001",
+  name: "Miss Dior Blooming Bouquet",
+  brand: "Dior",
+  price: 105.0,
+  rating: 4.7,
+  image: "/products/items/fr-001-miss-dior-blooming-bouquet.png",
+  description: "Fresh floral fragrance with peony and rose.",
+  fullDescription:
+    "A delicate floral fragrance with notes of peony, rose, and white musk for a light and feminine scent.",
+  category: "fragrance",
+  gender: "female",
+  skinConcerns: [],
+  ingredients: ["Peony", "Damask Rose", "White Musk"],
+  benefits: ["Fresh floral scent", "Light and feminine", "Everyday wear"],
+  externalUrl:
+    "https://www.sephora.com.au/products/dior-new-miss-dior-blooming-bouquet-eau-de-toilette/v/150ml",
+},
+{
+  id: "fr-002",
+  name: "Bleu de Chanel Eau de Parfum",
+  brand: "Chanel",
+  price: 130.0,
+  rating: 4.8,
+  image: "/products/items/fr-002-bleu-de-chanel-edp.png",
+  description: "Woody aromatic fragrance for men.",
+  fullDescription:
+    "A deep and sophisticated fragrance with woody, citrus, and aromatic notes.",
+  category: "fragrance",
+  gender: "male",
+  skinConcerns: [],
+  ingredients: ["Citrus Accord", "Cedar", "Sandalwood"],
+  benefits: ["Elegant scent", "Long-lasting", "Great for evening wear"],
+  externalUrl:
+    "https://www.dillards.com/p/chanel-bleu-de-chanel-eau-de-parfum-pour-homme-spray/505174607?sku=1881076",
+},
+{
+  id: "fr-003",
+  name: "Coco Mademoiselle Eau de Parfum",
+  brand: "Chanel",
+  price: 140.0,
+  rating: 4.8,
+  image: "/products/items/fr-003-coco-mademoiselle-edp.png",
+  description: "Elegant oriental fragrance with citrus and patchouli.",
+  fullDescription:
+    "A warm floral fragrance with orange, rose, and patchouli for a timeless and feminine scent.",
+  category: "fragrance",
+  gender: "female",
+  skinConcerns: [],
+  ingredients: ["Orange", "Rose", "Patchouli"],
+  benefits: ["Sophisticated scent", "Long-lasting", "Classic fragrance"],
+  externalUrl:
+    "https://www.sephora.com/product/coco-mademoiselle-P12495",
+},
+  // ==================== BODY CARE ====================
+  {
+  id: "bc-001",
+  name: "Brazilian Bum Bum Cream",
+  brand: "Sol de Janeiro",
+  price: 48.0,
+  rating: 4.7,
+  image: "/products/items/bc-001-brazilian-bum-bum-cream.png",
+  description: "Fast-absorbing body cream with a rich feel and signature scent.",
+  fullDescription:
+    "A moisturizing body cream designed to leave skin feeling soft, smooth, and lightly scented.",
+  category: "bodycare",
+  gender: "unisex",
+  skinConcerns: ["dryness", "hydration"],
+  ingredients: ["Cupuaçu Butter", "Coconut Oil"],
+  benefits: ["Moisturizes", "Softens skin", "Signature scent"],
+  externalUrl:
+    "https://soldejaneiro.com/products/brazilian-bum-bum-cream/",
+},
+{
+  id: "bc-002",
+  name: "AmLactin Daily Nourish Lotion",
+  brand: "AmLactin",
+  price: 16.99,
+  rating: 4.4,
+  image: "/products/items/bc-002-amlactin-lotion.png",
+  description: "Daily body lotion for normal to dry skin.",
+  fullDescription:
+    "A lightweight body lotion formulated with lactic acid and glycerin to help smooth and hydrate dry skin.",
+  category: "bodycare",
+  gender: "unisex",
+  skinConcerns: ["dryness", "dullness"],
+  ingredients: ["Lactic Acid", "Glycerin"],
+  benefits: ["Smooths texture", "Hydrates", "Supports softer skin"],
+  externalUrl:
+    "https://www.amazon.com/AmLactin-Moisturizing-Alpha-Hydroxy-Exfoliates-Paraben-Free/dp/B07BRQC5XZ",
+},
+{
+  id: "bc-003",
+  name: "Coco Mademoiselle Moisturizing Body Lotion",
+  brand: "Chanel",
+  price: 60.0,
+  rating: 4.6,
+  image: "/products/items/bc-003-coco-mademoiselle-body-lotion.png",
+  description: "Silky body lotion with a luxe fragrance profile.",
+  fullDescription:
+    "A fragranced body lotion intended to soften skin while layering scent with the Coco Mademoiselle fragrance line.",
+  category: "bodycare",
+  gender: "female",
+  skinConcerns: ["dryness", "hydration"],
+  ingredients: ["Moisturizing Agents", "Fragrance"],
+  benefits: ["Softens skin", "Adds scent", "Silky finish"],
+  externalUrl:
+    "https://www.ulta.com/p/coco-mademoiselle-moisturizing-body-lotion-pimprod2015916?sku=2068454",
+},
+  // ==================== TOOLS ====================
+  {
+  id: "tl-001",
+  name: "LUNA 3",
+  brand: "FOREO",
+  price: 199.0,
+  rating: 4.6,
+  image: "/products/items/tl-001-foreo-luna-3.png",
+  description: "Smart facial cleansing device with silicone touchpoints.",
+  fullDescription:
+    "A facial cleansing tool designed to help lift impurities and support a gentle cleansing routine.",
+  category: "tools",
+  gender: "unisex",
+  skinConcerns: ["congestion", "dullness"],
+  ingredients: [],
+  benefits: ["Deep cleansing", "Gentle silicone touchpoints", "Massage function"],
+  externalUrl:
+    "https://www.amazon.com/FOREO-LUNA-Facial-Cleansing-Brush/dp/B07QB6BD9R?th=1",
+},
+{
+  id: "tl-002",
+  name: "Jade Roller",
+  brand: "Mount Lai",
+  price: 34.0,
+  rating: 4.5,
+  image: "/products/items/tl-002-mount-lai-jade-roller.png",
+  description: "Facial roller made with jade for soothing massage.",
+  fullDescription:
+    "A cooling facial roller intended to support de-puffing and gentle massage.",
+  category: "tools",
+  gender: "unisex",
+  skinConcerns: ["puffiness"],
+  ingredients: [],
+  benefits: ["Cooling effect", "Helps de-puff", "Massage support"],
+  externalUrl:
+    "https://www.mountlai.com/products/the-jade-roller",
+},
+{
+  id: "tl-003",
+  name: "Gua Sha",
+  brand: "Mount Lai",
+  price: 30.0,
+  rating: 4.4,
+  image: "/products/items/tl-003-mount-lai-gua-sha.png",
+  description: "Facial massage tool for sculpting and circulation.",
+  fullDescription:
+    "A handheld tool used for facial massage to help encourage a more refreshed appearance.",
+  category: "tools",
+  gender: "unisex",
+  skinConcerns: ["puffiness"],
+  ingredients: [],
+  benefits: ["Massage support", "Helps de-puff", "Sculpting routine"],
+  externalUrl:
+    "https://www.amazon.com/dp/B08B1SSTLD/ref=twister_B0FGYFZ1YN?_encoding=UTF8&th=1",
+},
+];
+
+export const categories: { id: string; label: string; icon: string }[] = [
+  { id: "skincare", label: "Skincare", icon: "skincare" },
+  { id: "makeup", label: "Makeup", icon: "makeup" },
+  { id: "haircare", label: "Haircare", icon: "haircare" },
+  { id: "fragrance", label: "Fragrance", icon: "fragrance" },
+  { id: "bodycare", label: "Body Care", icon: "bodycare" },
+  { id: "tools", label: "Tools", icon: "tools" },
+];
+
+export const brands = [...new Set(products.map((p) => p.brand))].sort();

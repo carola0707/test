@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Apple-inspired warm neutral palette with blue accent */
+    --background: 25 45% 84%;
+    --foreground: 20 10% 15%;
+
+    --card: 30 40% 95%;
+    --card-foreground: 20 10% 15%;
+
+    --popover: 30 40% 95%;
+    --popover-foreground: 20 10% 15%;
+
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 25 30% 90%;
+    --secondary-foreground: 20 10% 15%;
+
+    --muted: 25 25% 88%;
+    --muted-foreground: 20 8% 40%;
+
+    --accent: 25 30% 90%;
+    --accent-foreground: 20 10% 15%;
+
+    --destructive: 0 50% 54%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 145 40% 42%;
+    --warning: 35 80% 52%;
+    --star: 40 90% 50%;
+
+    --border: 25 20% 80%;
+    --input: 25 20% 80%;
+    --ring: 211 100% 50%;
+
+    --radius: 0.875rem;
+
+    --sidebar-background: 30 40% 95%;
+    --sidebar-foreground: 20 10% 15%;
+    --sidebar-primary: 211 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 25 25% 88%;
+    --sidebar-accent-foreground: 20 10% 15%;
+    --sidebar-border: 25 20% 80%;
+    --sidebar-ring: 211 100% 50%;
+  }
+
+  .dark {
+    --background: 20 8% 8%;
+    --foreground: 25 15% 90%;
+
+    --card: 20 8% 12%;
+    --card-foreground: 25 15% 90%;
+
+    --popover: 20 8% 12%;
+    --popover-foreground: 25 15% 90%;
+
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 20 8% 16%;
+    --secondary-foreground: 25 15% 90%;
+
+    --muted: 20 8% 16%;
+    --muted-foreground: 25 10% 55%;
+
+    --accent: 20 8% 18%;
+    --accent-foreground: 25 15% 90%;
+
+    --destructive: 0 50% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 20 8% 20%;
+    --input: 20 8% 20%;
+    --ring: 211 100% 50%;
+
+    --sidebar-background: 20 8% 12%;
+    --sidebar-foreground: 25 15% 90%;
+    --sidebar-primary: 211 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 20 8% 16%;
+    --sidebar-accent-foreground: 25 15% 90%;
+    --sidebar-border: 20 8% 20%;
+    --sidebar-ring: 211 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
