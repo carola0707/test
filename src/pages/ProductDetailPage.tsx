@@ -1,8 +1,7 @@
 /**
  * ProductDetailPage — full product view with image, details, actions, and related products.
  */
-import { useParams, Link } from "react-router-dom";
-import { products } from "@/data/products";
+import { Link, useParams } from "react-router-dom";
 import { getSimilarProducts } from "@/lib/recommendations";
 import { useFavorites } from "@/contexts/FavoritesContext";
 import { useCart } from "@/contexts/CartContext";
@@ -12,13 +11,32 @@ import { Button } from "@/components/ui/button";
 import { Heart, ExternalLink, Star, ArrowLeft, ShoppingCart } from "lucide-react";
 import { ProductImage } from "@/components/product/ProductImage";
 import { useToast } from "@/hooks/use-toast";
+import { useProducts } from "@/hooks/useProducts";
 
 const ProductDetailPage = () => {
   const { id } = useParams<{ id: string }>();
+  const { products, loading, error } = useProducts();
   const product = products.find((p) => p.id === id);
   const { toggleFavorite, isFavorite } = useFavorites();
   const { addToCart } = useCart();
   const { toast } = useToast();
+
+  if (loading) {
+    return (
+      <div className="container flex flex-col items-center justify-center py-20">
+        <p className="text-lg text-muted-foreground">Loading product...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container flex flex-col items-center justify-center py-20">
+        <p className="text-lg text-muted-foreground">We couldn&apos;t load this product right now.</p>
+        <Link to="/search" className="mt-4 text-primary hover:underline">Back to search</Link>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -47,7 +65,6 @@ const ProductDetailPage = () => {
       </Link>
 
       <div className="grid gap-10 md:grid-cols-2">
-        {/* Product image */}
         <div className="overflow-hidden rounded-2xl bg-card shadow-soft">
           <ProductImage
             src={product.image}
@@ -57,7 +74,6 @@ const ProductDetailPage = () => {
           />
         </div>
 
-        {/* Product info */}
         <div className="flex flex-col gap-5">
           <div>
             <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground">{product.brand}</p>
