@@ -2,15 +2,16 @@
  * Index — Home page with inclusive hero carousel, categories, trending, and recommendations.
  * Apple HIG: clean hierarchy, generous whitespace, semantic HTML.
  */
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { HeroCarousel } from "@/components/home/HeroCarousel";
 import { ProductGrid } from "@/components/product/ProductGrid";
-import { products, categories } from "@/data/products";
+import { categories } from "@/data/productMeta";
 import { getRecommendations } from "@/lib/recommendations";
 import { useFavorites } from "@/contexts/FavoritesContext";
+import { useProducts } from "@/hooks/useProducts";
 import { Droplets, Palette, Scissors, Wind, Bath, Wrench } from "lucide-react";
 
-/** Map category ids to Lucide icons instead of emojis */
 const categoryIcons: Record<string, React.ReactNode> = {
   skincare: <Droplets className="h-5 w-5" />,
   makeup: <Palette className="h-5 w-5" />,
@@ -22,19 +23,22 @@ const categoryIcons: Record<string, React.ReactNode> = {
 
 const Index = () => {
   const { favorites } = useFavorites();
+  const { products, loading, error } = useProducts();
 
-  /* Sort products by rating to get top-rated items for the homepage */
-  const trending = [...products].sort((a, b) => b.rating - a.rating).slice(0, 8);
+  const trending = useMemo(
+    () => [...products].sort((a, b) => b.rating - a.rating).slice(0, 8),
+    [products]
+  );
 
-  /* Generate personalized recommendations based on user's favorites */
-  const recommended = getRecommendations(products, favorites, [], 8);
+  const recommended = useMemo(
+    () => getRecommendations(products, favorites, [], 8),
+    [products, favorites]
+  );
 
   return (
     <main className="min-h-screen">
-      {/* Hero carousel — diverse, inclusive beauty imagery with search */}
       <HeroCarousel />
 
-      {/* Categories — quick navigation to product types */}
       <section className="container py-10">
         <h2 className="mb-5 text-foreground">Browse Categories</h2>
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
@@ -52,7 +56,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Top Rated — highest-rated products displayed dynamically */}
       <section className="container pb-10">
         <div className="mb-5 flex items-center justify-between">
           <h2 className="text-foreground">Top Rated</h2>
@@ -60,10 +63,15 @@ const Index = () => {
             View all
           </Link>
         </div>
-        <ProductGrid products={trending} />
+        {error ? (
+          <div className="py-12 text-center text-muted-foreground">We couldn&apos;t load products right now.</div>
+        ) : loading ? (
+          <div className="py-12 text-center text-muted-foreground">Loading products...</div>
+        ) : (
+          <ProductGrid products={trending} />
+        )}
       </section>
 
-      {/* Recommended — only shows when user has favorited products */}
       {favorites.length > 0 && (
         <section className="container pb-14">
           <div className="mb-5 flex items-center justify-between">
@@ -72,7 +80,13 @@ const Index = () => {
               See more
             </Link>
           </div>
-          <ProductGrid products={recommended} />
+          {error ? (
+            <div className="py-12 text-center text-muted-foreground">We couldn&apos;t load recommendations right now.</div>
+          ) : loading ? (
+            <div className="py-12 text-center text-muted-foreground">Loading recommendations...</div>
+          ) : (
+            <ProductGrid products={recommended} />
+          )}
         </section>
       )}
     </main>
