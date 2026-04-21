@@ -1,10 +1,8 @@
 /**
  * CartContext — manages shopping cart state.
- * Uses Supabase for logged-in users, localStorage for guests.
+ * Keeps locally stored cart items aligned with database-backed product IDs.
  */
 import React, { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "./AuthContext";
 import { Product } from "@/types/product";
 
 export interface CartItem {
@@ -24,18 +22,20 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+const isUuid = (value: string) =>
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+
 export function CartProvider({ children }: { children: ReactNode }) {
-  const { user } = useAuth();
   const [items, setItems] = useState<CartItem[]>(() => {
     try {
       const stored = localStorage.getItem("beauty-cart");
-      return stored ? JSON.parse(stored) : [];
+      const parsed = stored ? (JSON.parse(stored) as CartItem[]) : [];
+      return parsed.filter((item) => item?.product?.id && isUuid(item.product.id));
     } catch {
       return [];
     }
   });
 
-  // Persist to localStorage
   useEffect(() => {
     localStorage.setItem("beauty-cart", JSON.stringify(items));
   }, [items]);
