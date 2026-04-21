@@ -2,18 +2,18 @@
  * FavoritesPage — user's liked products with recommendations based on them.
  * Includes Back to Profile navigation for easy account access.
  */
+import { Link } from "react-router-dom";
 import { useFavorites } from "@/contexts/FavoritesContext";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { getRecommendations } from "@/lib/recommendations";
-import { products } from "@/data/products";
-import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { BackToProfile } from "@/components/ui/BackToProfile";
+import { useProducts } from "@/hooks/useProducts";
 
 const FavoritesPage = () => {
   const { favorites } = useFavorites();
+  const { products, loading, error } = useProducts();
 
-  /* Generate recommendations based on favorited products */
   const recommended = getRecommendations(products, favorites, favorites.map((f) => f.id), 8);
 
   return (
@@ -35,12 +35,16 @@ const FavoritesPage = () => {
       ) : (
         <>
           <ProductGrid products={favorites} />
-          {recommended.length > 0 && (
+          {error ? (
+            <div className="mt-16 text-center text-muted-foreground">We couldn&apos;t load recommendations right now.</div>
+          ) : loading ? (
+            <div className="mt-16 text-center text-muted-foreground">Loading recommendations...</div>
+          ) : recommended.length > 0 ? (
             <section className="mt-16">
               <h2 className="mb-6 text-foreground">Based on Your Favorites</h2>
               <ProductGrid products={recommended} />
             </section>
-          )}
+          ) : null}
         </>
       )}
     </main>
