@@ -3,7 +3,6 @@
  * Apple HIG: clear labels, accessible checkboxes, smooth sliders.
  */
 import { Category, Gender } from "@/types/product";
-import { brands } from "@/data/products";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
@@ -27,6 +26,7 @@ export const defaultFilters: Filters = {
 interface FilterPanelProps {
   filters: Filters;
   onChange: (filters: Filters) => void;
+  brands?: string[];
 }
 
 const categoryOptions: { id: Category; label: string }[] = [
@@ -44,7 +44,7 @@ const genderOptions: { id: Gender; label: string }[] = [
   { id: "male", label: "Men" },
 ];
 
-export function FilterPanel({ filters, onChange }: FilterPanelProps) {
+export function FilterPanel({ filters, onChange, brands = [] }: FilterPanelProps) {
   const toggleCategory = (cat: Category) => {
     const cats = filters.categories.includes(cat)
       ? filters.categories.filter((c) => c !== cat)
@@ -68,7 +68,6 @@ export function FilterPanel({ filters, onChange }: FilterPanelProps) {
 
   return (
     <div className="space-y-6" role="group" aria-label="Product filters">
-      {/* Category */}
       <fieldset>
         <legend className="text-sm font-semibold text-foreground mb-2">Category</legend>
         <div className="space-y-2">
@@ -87,7 +86,6 @@ export function FilterPanel({ filters, onChange }: FilterPanelProps) {
 
       <div className="h-px bg-border" />
 
-      {/* Gender */}
       <fieldset>
         <legend className="text-sm font-semibold text-foreground mb-2">Gender</legend>
         <div className="space-y-2">
@@ -106,7 +104,6 @@ export function FilterPanel({ filters, onChange }: FilterPanelProps) {
 
       <div className="h-px bg-border" />
 
-      {/* Price */}
       <div>
         <Label className="text-sm font-semibold text-foreground">
           Price: ${filters.priceRange[0]} — ${filters.priceRange[1]}
@@ -124,7 +121,6 @@ export function FilterPanel({ filters, onChange }: FilterPanelProps) {
 
       <div className="h-px bg-border" />
 
-      {/* Rating */}
       <div>
         <Label className="text-sm font-semibold text-foreground">
           Min Rating: {filters.minRating.toFixed(1)}+
@@ -142,7 +138,6 @@ export function FilterPanel({ filters, onChange }: FilterPanelProps) {
 
       <div className="h-px bg-border" />
 
-      {/* Brand */}
       <fieldset>
         <legend className="text-sm font-semibold text-foreground mb-2">Brand</legend>
         <div className="max-h-48 space-y-2 overflow-y-auto">
