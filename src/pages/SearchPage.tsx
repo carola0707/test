@@ -1,22 +1,23 @@
 /**
  * SearchPage — browse and filter products with sidebar and mobile sheet.
  */
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SearchBar } from "@/components/search/SearchBar";
 import { FilterPanel, Filters, defaultFilters, applyFilters } from "@/components/search/FilterPanel";
 import { ProductGrid } from "@/components/product/ProductGrid";
-import { products } from "@/data/products";
 import { searchProducts } from "@/lib/recommendations";
 import { Category } from "@/types/product";
 import { SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { useProducts } from "@/hooks/useProducts";
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
   const categoryParam = searchParams.get("category") as Category | null;
+  const { products, brands, loading, error } = useProducts();
 
   const [filters, setFilters] = useState<Filters>(() => ({
     ...defaultFilters,
@@ -27,7 +28,7 @@ const SearchPage = () => {
   const results = useMemo(() => {
     const searched = query ? searchProducts(products, query) : products;
     return applyFilters(searched, filters);
-  }, [query, filters]);
+  }, [query, filters, products]);
 
   const handleSearch = (q: string) => {
     setSearchParams({ q });
@@ -47,7 +48,6 @@ const SearchPage = () => {
       </div>
 
       <div className="flex gap-8">
-        {/* Desktop filters */}
         <aside className="hidden w-64 shrink-0 lg:block" aria-label="Filters">
           <div className="sticky top-20 rounded-2xl bg-card p-5 shadow-soft">
             <div className="mb-4 flex items-center justify-between">
@@ -58,19 +58,17 @@ const SearchPage = () => {
                 </Button>
               )}
             </div>
-            <FilterPanel filters={filters} onChange={setFilters} />
+            <FilterPanel filters={filters} onChange={setFilters} brands={brands} />
           </div>
         </aside>
 
-        {/* Content */}
         <div className="flex-1">
           <div className="mb-5 flex items-center justify-between">
             <p className="text-sm text-muted-foreground">
-              {results.length} product{results.length !== 1 && "s"}
+              {loading ? "Loading products..." : `${results.length} product${results.length !== 1 ? "s" : ""}`}
               {query && <> for &ldquo;<strong className="text-foreground">{query}</strong>&rdquo;</>}
             </p>
 
-            {/* Mobile filter trigger */}
             <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
               <SheetTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-1.5 rounded-full lg:hidden">
@@ -88,13 +86,19 @@ const SearchPage = () => {
                   <SheetTitle>Filters</SheetTitle>
                 </SheetHeader>
                 <div className="mt-4">
-                  <FilterPanel filters={filters} onChange={setFilters} />
+                  <FilterPanel filters={filters} onChange={setFilters} brands={brands} />
                 </div>
               </SheetContent>
             </Sheet>
           </div>
 
-          <ProductGrid products={results} emptyMessage="No products match your search. Try different keywords or adjust filters." />
+          {error ? (
+            <div className="py-16 text-center text-muted-foreground">We couldn&apos;t load products right now.</div>
+          ) : loading ? (
+            <div className="py-16 text-center text-muted-foreground">Loading products...</div>
+          ) : (
+            <ProductGrid products={results} emptyMessage="No products match your search. Try different keywords or adjust filters." />
+          )}
         </div>
       </div>
     </main>
