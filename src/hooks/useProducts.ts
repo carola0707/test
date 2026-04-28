@@ -2,6 +2,21 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { fetchProducts } from "@/lib/supabaseProducts";
 import type { Product } from "@/types/product";
 
+function dedupeProducts(products: Product[]) {
+  const seen = new Set<string>();
+
+  return products.filter((product) => {
+    const key = `${product.brand}-${product.name}`.toLowerCase().trim();
+
+    if (seen.has(key)) {
+      return false;
+    }
+
+    seen.add(key);
+    return true;
+  });
+}
+
 export function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +28,7 @@ export function useProducts() {
 
     try {
       const data = await fetchProducts();
-      setProducts(data);
+      setProducts(dedupeProducts(data));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load products.");
     } finally {
