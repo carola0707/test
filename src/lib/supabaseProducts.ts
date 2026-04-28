@@ -23,6 +23,33 @@ export function mapDbProduct(row: DBProduct): Product {
   };
 }
 
+function normalizeProductValue(value?: string | number | null) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "")
+    .trim();
+}
+
+function dedupeProducts(products: Product[]) {
+  const seen = new Set<string>();
+
+  return products.filter((product) => {
+    const key = [
+      product.brand,
+      product.name,
+      product.description,
+      product.price,
+    ]
+      .map(normalizeProductValue)
+      .join("-");
+
+    if (seen.has(key)) return false;
+
+    seen.add(key);
+    return true;
+  });
+}
+
 export async function fetchProducts(): Promise<Product[]> {
   const { data, error } = await supabase
     .from("products")
@@ -31,5 +58,5 @@ export async function fetchProducts(): Promise<Product[]> {
 
   if (error) throw error;
 
-  return (data ?? []).map(mapDbProduct);
+  return dedupeProducts((data ?? []).map(mapDbProduct));
 }
